@@ -24,3 +24,30 @@ class Solution:
                         j+=1
         return ans
             
+
+    def longestMountain(self, arr: List[int]) -> int:
+        peaks=[]
+
+        for i in range(1,len(arr)-1):
+            if (arr[i]>arr[i+1] and arr[i]>arr[i-1]):
+                peaks.append(i)
+        if (len(peaks)==0):
+            return 0
+        ans=-1
+        for i in range(len(peaks)):
+            p=peaks[i]
+            curr_ans=1
+            while (p>0 and arr[p]>arr[p-1]):
+                print(p)
+                curr_ans+=1
+                p-=1
+            p=peaks[i]
+            
+            while (p<len(arr)-1 and arr[p]>arr[p+1]):
+                print(p)
+                curr_ans+=1
+                p+=1
+            ans=max(ans,curr_ans)
+        return ans
+        
+        
