@@ -1,4 +1,6 @@
+from typing import List
 class Solution:
+    @staticmethod
     def threeSum(self, arr: List[int]) -> List[List[int]]:
         arr.sort()
         ans=[]
@@ -49,5 +51,24 @@ class Solution:
                 p+=1
             ans=max(ans,curr_ans)
         return ans
-        
+
+def longestBand(arr:List[int])->int:
+    dict={}
+    ans=0
+    for i in range(len(arr)):
+        dict[arr[i]]=i
+    arr.sort()
+    for i in range(len(arr)):
+        t=arr[i]
+        curr_ans=0
+        while t in dict:
+            t+=1
+            curr_ans+=1
+        ans=max(ans,curr_ans)
+        i=dict.get(t-1)+1
+    return ans
+
+print(longestBand([1,2,3]))
+
+
         
